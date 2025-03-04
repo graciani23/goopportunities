@@ -11,7 +11,7 @@ import (
 // @BasePath /api/v1
 
 // @Summary Delete opening
-// @Description Create a new job opening
+// @Description Delete a new job opening
 // @Tags Openings
 // @Accept json
 // @Produce json

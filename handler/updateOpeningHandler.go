@@ -7,6 +7,20 @@ import (
 	"github.com/graciani23/goopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update opening
+// @Description Update a new job opening
+// @Tags Openings
+// @Accept json
+// @Produce json
+// @Param id query string true "Opening identification"
+// @Param request body UpdateOpeningRequest true "Opening data to Update"
+// @Success 200 {object} UpdateOpeningResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /opening [put]
 func UpdateOpeningHandler(ctx *gin.Context) {
 	request := UpdateOpeningRequest{}
 	ctx.BindJSON(&request)
@@ -28,15 +42,15 @@ func UpdateOpeningHandler(ctx *gin.Context) {
 	}
 
 	// update opening
-	if request.Role == "" {
-		opening.Role = request.Company
+	if request.Role != "" {
+		opening.Role = request.Role
 	}
 
-	if request.Company == "" {
+	if request.Company != "" {
 		opening.Company = request.Company
 	}
 
-	if request.Location == "" {
+	if request.Location != "" {
 		opening.Location = request.Location
 	}
 
@@ -44,11 +58,11 @@ func UpdateOpeningHandler(ctx *gin.Context) {
 		opening.Remote = *request.Remote
 	}
 
-	if request.Link == "" {
+	if request.Link != "" {
 		opening.Link = request.Link
 	}
 
-	if request.Salary <= 0 {
+	if request.Salary > 0 {
 		opening.Salary = request.Salary
 	}
 
